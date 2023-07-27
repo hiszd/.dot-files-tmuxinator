@@ -1,7 +1,7 @@
-# /home/zion/.config/tmuxinator/vimproj.yml
+# /home/zion/.config/tmuxinator/rustproj.yml
 
 name: <%= @args[0] %>
-root: ~/programming/nvim/<%= @args[0] %>
+root: ~/programming/rust/<%= @args[0] %>
 
 # Optional tmux socket
 # socket_name: foo
