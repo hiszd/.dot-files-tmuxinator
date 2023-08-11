@@ -1,7 +1,7 @@
-# /home/zion/.config/tmuxinator/vimproj.yml
+# /home/zion/.config/tmuxinator/vpn.yml
 
-name: <%= @args[1] %>
-root: ~/programming/nvim/<%= @args[0] %>
+name: vpn
+root: ~/Documents/VPNConfig/
 
 # Optional tmux socket
 # socket_name: foo
@@ -42,8 +42,7 @@ root: ~/programming/nvim/<%= @args[0] %>
 # startup_pane: 1
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
-attach: true
+# attach: false
 
 windows:
-  - editor: nvim
-  - test:
+  - server: sudo openvpn --config ~/Documents/VPNConfig/<%= @args[0] %>.ovpn

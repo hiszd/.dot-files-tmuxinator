@@ -1,7 +1,7 @@
-# /home/zion/.config/tmuxinator/vimproj.yml
+# /home/zion/.config/tmuxinator/ocamlproj.yml
 
 name: <%= @args[1] %>
-root: ~/programming/nvim/<%= @args[0] %>
+root: ~/programming/ocaml/<%= @args[0] %>
 
 # Optional tmux socket
 # socket_name: foo

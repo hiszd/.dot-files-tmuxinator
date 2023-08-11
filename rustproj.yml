@@ -1,6 +1,6 @@
 # /home/zion/.config/tmuxinator/rustproj.yml
 
-name: <%= @args[0] %>
+name: <%= @args[1] %>
 root: ~/programming/rust/<%= @args[0] %>
 
 # Optional tmux socket
@@ -42,7 +42,7 @@ root: ~/programming/rust/<%= @args[0] %>
 # startup_pane: 1
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
-attach: false
+attach: true
 
 windows:
   - editor: nvim
