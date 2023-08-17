@@ -1,10 +1,10 @@
-# /home/zion/.config/tmuxinator/rustproj.yml
+# /home/zion/.config/tmuxinator/flake.yml
 
-name: <%= @args[1] %>
-root: ~/programming/rust/<%= @args[0] %>
+name: flake
+root: ~/dotfiles-nix
 
 # Optional tmux socket
-# socket_name: foo
+# socket_name: flake
 
 # Note that the pre and post options have been deprecated and will be replaced by
 # project hooks.
@@ -12,7 +12,7 @@ root: ~/programming/rust/<%= @args[0] %>
 # Project hooks
 
 # Runs on project start, always
-# on_project_start: command
+# on_project_start: cd ~/.config/flake/
 
 # Run on project start, the first time
 # on_project_first_start: command
@@ -30,7 +30,7 @@ root: ~/programming/rust/<%= @args[0] %>
 # pre_window: rbenv shell 2.0.0-p247
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
-# tmux_options: -f ~/.tmux.mac.conf
+# tmux_options: -c ~/.config/flake/
 
 # Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
 # tmux_command: byobu
@@ -45,5 +45,4 @@ root: ~/programming/rust/<%= @args[0] %>
 attach: true
 
 windows:
-  - editor: nvim
-  - test:
+  - code: nvim

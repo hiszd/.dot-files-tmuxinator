@@ -1,7 +1,7 @@
-# /home/zion/.config/tmuxinator/ergoone.yml
+# /home/zion/.config/tmuxinator/ocaml-dev.yml
 
-name: ergoone
-root: ~/programming/rust/ergoone.git/dev
+name: ocaml-<%= @args[1] %>
+root: ~/programming/ocaml/<%= @args[0] %>
 
 # Optional tmux socket
 # socket_name: foo
@@ -42,8 +42,8 @@ root: ~/programming/rust/ergoone.git/dev
 # startup_pane: 1
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
-attach: false
+attach: true
 
 windows:
   - editor: nvim
-  - exec:
+  - test:

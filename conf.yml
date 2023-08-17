@@ -1,6 +1,6 @@
 # /home/zion/.config/tmuxinator/conf.yml
 
-name: <%= @args[0] %>conf
+name: conf_<%= @args[0] %>
 root: ~/.config/<%= @args[0] %>
 
 # Optional tmux socket
