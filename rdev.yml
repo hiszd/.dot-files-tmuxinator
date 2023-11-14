@@ -1,7 +1,7 @@
-# /home/zion/.config/tmuxinator/rust-dev.yml
+# /home/zion/.config/tmuxinator/rdev.yml
 
-name: rust-<%= @args[1] %>
-root: ~/programming/rust/<%= @args[0] %>
+name: rdev
+root: ~/
 
 # Optional tmux socket
 # socket_name: foo
@@ -45,7 +45,4 @@ root: ~/programming/rust/<%= @args[0] %>
 attach: true
 
 windows:
-  - editor: nix-shell ~/programming/rust/shell.nix --command "nvim"
-  - test:
-    - nix-shell ~/programming/rust/shell.nix --command "fish"
-    - clear
+  - server: ssh zion@66.228.34.108
