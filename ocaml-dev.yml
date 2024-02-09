@@ -45,5 +45,9 @@ root: ~/programming/ocaml/<%= @args[0] %>
 attach: true
 
 windows:
-  - editor: nvim
+  - editor: 
+    - nix-shell ~/programming/ocaml/shell.nix --command "fish"
+    - nvim
   - test:
+    - nix-shell ~/programming/ocaml/shell.nix --command "fish"
+    - clear

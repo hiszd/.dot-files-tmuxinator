@@ -45,7 +45,9 @@ root: ~/programming/rust/<%= @args[0] %>
 attach: true
 
 windows:
-  - editor: nix-shell ~/programming/rust/shell.nix --command "nvim"
+  - editor: 
+    - nix-shell ~/programming/rust/shell.nix --command "fish"
+    - nvim
   - test:
     - nix-shell ~/programming/rust/shell.nix --command "fish"
     - clear
