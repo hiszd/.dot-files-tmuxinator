@@ -1,24 +1,29 @@
 #!/usr/bin/env bash
 
-selected=$(find $HOME/programming/$1/ -mindepth 1 -maxdepth 3 -type d | fzf)
+
+selected_type=$(find $HOME/programming/ -mindepth 1 -maxdepth 1 -type d | fzf)
+session_type=$(basename "$selected_type" | tr . _)
+echo "Session type: $session_type"
+
+selected=$(find $HOME/programming/$session_type/ -mindepth 1 -maxdepth 3 -type d | fzf)
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
 
-prefix="$HOME/programming/$1/"
+prefix="$HOME/programming/$session_type/"
 corrected_path=${selected#"$prefix"}
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmuxinator start $1-dev $corrected_path $selected_name
+    tmuxinator start $session_type-dev $corrected_path $selected_name
     exit 0
 fi
 
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmuxinator start $1-dev $corrected_path $selected_name
+    tmuxinator start $session_type-dev $corrected_path $selected_name
     exit 0
 fi
 
