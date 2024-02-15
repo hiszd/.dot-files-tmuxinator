@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+selected=$(find $HOME/programming/$1/ -mindepth 1 -maxdepth 3 -type d | fzf)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+
+prefix="$HOME/programming/$1/"
+corrected_path=${selected#"$prefix"}
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmuxinator start $1-dev $corrected_path $selected_name
+    exit 0
+fi
+
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    tmuxinator start $1-dev $corrected_path $selected_name
+    exit 0
+fi
+
+tmux switch-client -t $selected_name
