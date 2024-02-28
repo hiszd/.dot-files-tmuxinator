@@ -1,6 +1,6 @@
 # /home/zion/.config/tmuxinator/rdev.yml
 
-name: rdev
+name: rdev-<%= @args[1] %>
 root: ~/
 
 # Optional tmux socket
@@ -45,4 +45,4 @@ root: ~/
 attach: true
 
 windows:
-  - server: ssh zion@66.228.34.108
+  - server: ssh <%= @args[0] %>@<%= @args[1] %>
