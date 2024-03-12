@@ -1,6 +1,6 @@
 # /home/zion/.config/tmuxinator/ocaml-dev.yml
 
-name: ocaml-<%= @args[1] %>
+name: <%= @args[1] %>_ocaml
 root: ~/programming/ocaml/<%= @args[0] %>
 
 # Optional tmux socket

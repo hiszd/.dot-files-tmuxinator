@@ -1,6 +1,6 @@
 # /home/zion/.config/tmuxinator/go-dev.yml
 
-name: go-<%= @args[1] %>
+name: <%= @args[1] %>_go
 root: ~/programming/go/<%= @args[0] %>
 
 # Optional tmux socket

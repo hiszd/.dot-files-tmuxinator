@@ -1,7 +1,7 @@
-# /home/zion/.config/tmuxinator/rust-dev.yml
+# /home/zion/.config/tmuxinator/firefox-dev.yml
 
-name: <%= @args[1] %>_rust
-root: ~/programming/rust/<%= @args[0] %>
+name: <%= @args[1] %>_firefox
+root: ~/programming/firefox/<%= @args[0] %>
 
 # Optional tmux socket
 # socket_name: foo
@@ -46,8 +46,8 @@ attach: true
 
 windows:
   - editor: 
-    - nix-shell ~/programming/rust/shell.nix --command "fish"
+    - nix-shell ~/programming/firefox/shell.nix --command "fish"
     - nvim
   - test:
-    - nix-shell ~/programming/rust/shell.nix --command "fish"
+    - nix-shell ~/programming/firefox/shell.nix --command "fish"
     - clear

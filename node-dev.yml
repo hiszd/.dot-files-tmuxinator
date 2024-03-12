@@ -1,6 +1,6 @@
 # /home/zion/.config/tmuxinator/node-dev.yml
 
-name: node-<%= @args[1] %>
+name: <%= @args[1] %>_node
 root: ~/programming/node/<%= @args[0] %>
 
 # Optional tmux socket

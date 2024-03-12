@@ -1,6 +1,6 @@
 # /home/zion/.config/tmuxinator/nvim-dev.yml
 
-name: nvim_<%= @args[1] %>
+name: <%= @args[1] %>_nvim
 root: ~/programming/nvim/<%= @args[0] %>
 
 # Optional tmux socket
