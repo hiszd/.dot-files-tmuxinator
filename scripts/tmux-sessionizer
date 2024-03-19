@@ -3,7 +3,6 @@
 if [[ $# -eq 1 ]]; then
 
   selected=$( tmux list-sessions | sed -n 's/:.*$//p' | fzf)
-  echo "Session: '$selected'"
   tmux switch-client -t $selected
 
   exit 0
@@ -11,6 +10,9 @@ if [[ $# -eq 1 ]]; then
 else
 
   selected_type=$(find $HOME/programming/ -mindepth 1 -maxdepth 1 -type d | fzf)
+  if [[ -z $selected_type ]]; then
+    exit 0
+  fi
   session_type=$(basename "$selected_type" | tr . _)
   echo "Session type: $session_type"
 
