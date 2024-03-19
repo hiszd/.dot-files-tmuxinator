@@ -27,7 +27,7 @@ root: ~/programming/node/<%= @args[0] %>
 # on_project_stop: command
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
-# pre_window: rbenv shell 2.0.0-p247
+pre_window: nix-shell ~/programming/node/shell.nix --command "fish"
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
 # tmux_options: -f ~/.tmux.mac.conf
@@ -46,8 +46,6 @@ attach: true
 
 windows:
   - editor: 
-    - nix-shell ~/programming/node/shell.nix --command "fish"
     - nvim
   - test:
-    - nix-shell ~/programming/node/shell.nix --command "fish"
     - clear
