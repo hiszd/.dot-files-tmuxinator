@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+tmux_running=$(pgrep tmux)
+if [[ -z $tmux_running ]]; then
+  exit 1
+fi
+selected=$(tmux list-sessions | fzf)
+
+if [[ -z $selected ]]; then
+  exit 0
+fi
+
+selected_fmt=${selected%%:*}
+echo "Session: $selected_fmt"
+
+
+if [[ -z $TMUX ]]; then
+  echo "tmux attach -t $selected_fmt"
+  tmux attach -t $selected_fmt
+  exit 0
+fi
+
+if ! tmux has-session -t=$selected_fmt 2> /dev/null; then
+  echo "Session $selected_fmt not found"
+  exit 0
+fi
+
+exit 0
