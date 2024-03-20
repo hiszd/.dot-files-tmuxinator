@@ -49,5 +49,7 @@ windows:
     - nvim
   - web-ext:
     - clear
+    - ./web-ext
   - npm:
     - clear
+    - npm run watch
