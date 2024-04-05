@@ -16,7 +16,7 @@ else
   session_type=$(basename "$selected_type" | tr . _)
   echo "Session type: $session_type"
 
-  selected=$(find $HOME/programming/$session_type/ -mindepth 1 -maxdepth 3 -type d | fzf)
+  selected=$(find $HOME/programming/$session_type/ -mindepth 1 -maxdepth 1 -type d | fzf)
 
   if [[ -z $selected ]]; then
     exit 0
