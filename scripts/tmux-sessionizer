@@ -1,43 +1,31 @@
 #!/usr/bin/env bash
 
-if [[ $# -eq 1 ]]; then
+selected=$(find $HOME/programming/ -mindepth 1 -maxdepth 2 -type d | fzf)
 
-  selected=$( tmux list-sessions | sed -n 's/:.*$//p' | fzf)
-  tmux switch-client -t $selected
-
+if [[ -z $selected ]]; then
   exit 0
-
-else
-
-  selected_type=$(find $HOME/programming/ -mindepth 1 -maxdepth 1 -type d | fzf)
-  if [[ -z $selected_type ]]; then
-    exit 0
-  fi
-  session_type=$(basename "$selected_type" | tr . _)
-  echo "Session type: $session_type"
-
-  selected=$(find $HOME/programming/$session_type/ -mindepth 1 -maxdepth 1 -type d | fzf)
-
-  if [[ -z $selected ]]; then
-    exit 0
-  fi
-
-
-  prefix="$HOME/programming/$session_type/"
-  corrected_path=${selected#"$prefix"}
-  selected_name=$(basename "$selected" | tr . _)
-  tmux_running=$(pgrep tmux)
-
-  if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmuxinator start $session_type-dev $corrected_path $selected_name
-    exit 0
-  fi
-
-  if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmuxinator start $session_type-dev $corrected_path $selected_name
-    exit 0
-  fi
-
-  exit 0
-
 fi
+
+
+prefix="$HOME/programming/"
+echo "Selected: $selected"
+prefixelim=${selected#"$prefix"}
+
+echo "Prefixelim: $prefixelim"
+session_type=${prefixelim%/*}
+echo "Session type: $session_type"
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+  tmuxinator start $session_type-dev "$selected" $selected_name
+  exit 0
+fi
+
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+  tmuxinator start $session_type-dev "$selected" $selected_name
+  exit 0
+fi
+
+exit 0
