@@ -4,7 +4,12 @@ tmux_running=$(pgrep tmux)
 if [[ -z $tmux_running ]]; then
   exit 1
 fi
-selected=$(tmux list-sessions | fzf)
+
+if [ "$#" -gt 0 ]; then
+  selected=$(tmux list-sessions | fzf -1 --query="$1")
+else
+  selected=$(tmux list-sessions | fzf)
+fi
 
 if [[ -z $selected ]]; then
   exit 0

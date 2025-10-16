@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-selected=$(find $HOME/programming/ -mindepth 1 -maxdepth 2 -type d | fzf)
+if [ "$#" -gt 0 ]; then
+  selected=$(find $HOME/programming/ -mindepth 1 -maxdepth 2 -type d | fzf -1 --query="$1")
+else
+  selected=$(find $HOME/programming/ -mindepth 1 -maxdepth 2 -type d | fzf)
+fi
 
 if [[ -z $selected ]]; then
   exit 0
